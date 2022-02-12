@@ -7,20 +7,21 @@ const View = (props) => {
         const { name, value } = event.target
         setUser({ ...user, [name]: value })
     }
+    const Submits = e => {
+         e.preventDefault();
+        props.adduser(user)
+          if (!user.name || !user.username) return
+       setUser(initialFormState)
+        console.log(user)
+    }
     return (
         <>
-            <form onSubmit={event => {
-                event.preventDefault();
-                if (!user.name || !user.username) return
-                props.adduser(user)
-                setUser(initialFormState)
-                console.log(user)
-            }}>
+            <form onSubmit={Submits}>
                 <label>Name</label>
                 <input className="form-control" type="text" name="name" onChange={handleInputChange} required />
                 <label>Username</label>
                 <input type="text" className='form-control' name="username" onChange={handleInputChange} required />
-                <button className='btn btn-primary'>Add New  user </button>
+                <button type = "submit" className='btn btn-primary'>Add New user </button>
             </form>
 
         </>
